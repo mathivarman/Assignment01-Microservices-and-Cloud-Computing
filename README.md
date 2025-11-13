@@ -73,6 +73,53 @@ Request Body:
 }
 ```
 
+## Docker (optional)
+
+Follow these steps to containerize and run the application with Docker.
+
+1) Build the Spring Boot jar
+
+```powershell
+cd studentmanagement
+.\mvnw.cmd -DskipTests package
+```
+
+2) Build the Docker image (from repository root)
+
+```powershell
+docker build -t student-management-app .
+```
+
+3) Run the container
+
+```powershell
+docker run -p 8080:8080 student-management-app
+```
+
+4) Optional: Use docker-compose with a MySQL service (provided in `docker-compose.yml`)
+
+```powershell
+docker-compose up --build
+```
+
+Notes:
+- Update the jar name in `Dockerfile` if your artifactId/version differs (`studentmanagement-0.0.1-SNAPSHOT.jar`).
+- The `docker-compose.yml` in the repo starts a MySQL 8.0 container and the app, and maps ports 3306 and 8080.
+- Use `.dockerignore` (included) to keep your build context small.
+
+Tip: This repository now includes a multi-stage `Dockerfile` which builds the application inside a Maven image and produces a smaller runtime image. You don't need to run `mvn package` locally; `docker build` will compile the project during the image build.
+
+Example multi-stage build commands (from repository root):
+
+```powershell
+# build image (this will run mvn package inside the build stage)
+docker build -t student-management-app .
+
+# run
+docker run -p 8080:8080 student-management-app
+```
+
+
 ---
 
 ### 2. Get All Students
