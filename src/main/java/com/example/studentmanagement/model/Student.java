@@ -24,6 +24,4 @@ public class Student {
     @Min(value = 18, message = "Age must be at least 18")
     private int age;
 
-
-    // Getters and Setters
 }
