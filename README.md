@@ -258,10 +258,3 @@ Name: Mathivarman
 Index Number: ICT21887  
 Course: BICT (Hons) — University of Sri Jayewardenepura  
 Subject: ITS 4243 — Microservices and Cloud Computing
-
----
-
-Completion summary:
-- Rewrote and polished the README with clear setup steps, Docker guidance, endpoints, examples, validation and error handling details.
-- If you want, I can also apply minor fixes to `application.properties` or the `Dockerfile` to match your environment.
-
