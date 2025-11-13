@@ -56,14 +56,101 @@ DELETE	/api/students/{id}	Delete a student
 GET	/api/students/search?name={name}	Search by name
 GET	/api/students/search?course={course}	Search by course
 
-🧪 Example Request (POST)
-json
+## REST API Endpoints (Detailed)
+
+### 1. Create Student
+
+POST /api/v1/students
+
+Request Body:
+
+```json
 {
-  "name": "Mathivarman",
-  "email": "mathivarman24mv@gmail.com",
-  "course": "BICT",
+  "name": "mathivarman",
+  "email": "mathi2gmail.com",
+  "course": BICT",
   "age": 24
 }
+```
+
+---
+
+### 2. Get All Students
+
+GET /api/v1/students
+
+---
+
+### 3. Get Student by ID
+
+GET /api/v1/students/{id}
+
+---
+
+### 4. Update Student
+
+PUT /api/v1/students/{id}
+
+Request Body:
+
+```json
+{
+  "name": "mathi Updated",
+  "email": "mathiupdated@example.com",
+  "course": "Software Engineering",
+  "age": 22
+}
+```
+
+---
+
+### 5. Delete Student
+
+DELETE /api/v1/students/{id}
+
+---
+
+## Validation Rules
+
+Field    | Rule
+-------- | ------------------------
+name     | must not be blank
+email    | must be valid & unique
+course   | must not be blank
+age      | must be ≥ 19
+
+---
+
+## Global Exception Handling
+
+The application provides centralized error responses for common failures.
+
+Handled exceptions:
+- ResourceNotFoundException → 404 Not Found
+- MethodArgumentNotValidException → 400 Bad Request
+- Exception → 500 Internal Server Error
+
+All error responses include the following fields:
+- timestamp — ISO-8601 timestamp of the error
+- status — HTTP status code
+- error/message — short error message
+- errors — list or map of field validation errors (if any)
+
+Example error response (validation):
+
+```json
+{
+  "timestamp": "2025-11-07T12:34:56Z",
+  "status": 400,
+  "error": "Validation Failed",
+  "errors": {
+    "email": "Email must be valid",
+    "age": "Age must be at least 19"
+  }
+}
+
+
+
 ✅ How to Test
 Use Postman to send API requests to the endpoints above.
 
@@ -86,7 +173,5 @@ Subject: ITS 4243 – Microservices and Cloud Computing
 - API endpoints table  
 - Example POST request  
 
-
-
-
+---
 
